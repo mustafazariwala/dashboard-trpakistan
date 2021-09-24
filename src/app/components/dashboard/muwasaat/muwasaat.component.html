@@ -1,0 +1,237 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="">
+      <div class="col-sm-12 col-xl-12">
+        <!-- <div class="card card-absolute"> -->
+        <div class="card">
+            <!-- <div class="card-header bg-primary">
+                <h5 class="text-white">Search Business Muwasaat</h5>
+            </div> -->
+            <div class="card-body">
+               <form class="theme-form mega-form">
+                 <div class="form-row">
+                   <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="col-form-label">
+                        TR REF
+                      </label>
+                      <ng-select [items]="data" bindLabel="trRef" placeholder="TR REF"></ng-select>
+                    </div>
+                   </div>
+                   <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="col-form-label">
+                        Counsellor Name
+                      </label>
+                      <!-- <ng-select [items]="data" bindLabel="trRef" placeholder="Counsellor Name"></ng-select> -->
+                      <input class="form-control" type="text" placeholder="Counsellor Name">
+                    </div>
+                   </div>
+                   <div class="col-md-6">
+                    <div class="form-group">
+                      <label class="col-form-label">
+                        Mumin Name
+                      </label>
+                      <ng-select [items]="data" bindLabel="muminDetails.name" placeholder="Mumin Name"></ng-select>
+                    </div>
+                   </div>
+                   <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="col-form-label">
+                        Mumin ITS
+                      </label>
+                      <ng-select [items]="data" bindLabel="muminDetails.its" placeholder="Mumin ITS"></ng-select>
+                    </div>
+                   </div>
+                   <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="col-form-label">
+                        Mumin Mauze
+                      </label>
+                      <input class="form-control" type="text" placeholder="Mumin Mauze">
+                    </div>
+                   </div>
+                   <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="col-form-label">
+                        Case Year
+                      </label>
+                      <input class="form-control" type="text" placeholder="Case Year">
+                    </div>
+                   </div>
+                   <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="col-form-label">
+                        Case Type
+                      </label>
+                      <input class="form-control" type="text" placeholder="Case Type">
+                    </div>
+                   </div>
+                   <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="col-form-label">
+                        Enayat Approval
+                      </label>
+                      <input class="form-control" type="text" placeholder="Enayat Approval">
+                    </div>
+                   </div>
+                 </div>
+                 <button class="btn btn-primary">Search</button>
+               </form>
+            </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12 col-xl-6">
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Entry Form</h5>
+              </div>
+              <div class="card-body">
+                <form class="theme-form mega-form" [formGroup]="muwasaatInsertForm"  (ngSubmit)="onAddRecord()">
+                  <h6>Basic Information</h6>
+                  <div class="form-group">
+                    <label class="col-form-label">S No</label>
+                    <input formControlName="sn" class="form-control" type="number" placeholder="S No">
+                  </div>
+                  <div class="form-group">
+                    <label class="col-form-label">TR Ref</label>
+                    <input formControlName="trRef" class="form-control" type="text" placeholder="TR Ref">
+                  </div>
+                  <hr class="mt-4 mb-4">
+                  <h6>Counsellor Information</h6>
+                  <div formArrayName="counsellor" *ngFor="let rubric of muwasaatInsertForm.controls.counsellor?.value; let i = index; trackBy: trackByFn">
+                    <div [formGroupName]="i">
+                    <p>Counsellor {{i+1}}</p>
+                        <div class="form-group">
+                            <label class="col-form-label">Prefix</label>
+                            <select formControlName="prefix" class="form-control">
+                                <option></option>
+                                <option>Mulla</option>
+                                <option>Shaikh</option>
+                            </select>
+                          </div>
+                          <div class="form-group">
+                            <label class="col-form-label">Counsellor Name</label>
+                            <input formControlName="counsellorName" class="form-control" type="text" placeholder="Counsellor Name">
+                          </div>
+                          <div class="form-group">
+                            <label class="col-form-label">ITS</label>
+                            <input formControlName="its" class="form-control" type="number" placeholder="ITS">
+                          </div>
+                          <div class="form-group">
+                            <label class="col-form-label">Mobile No</label>
+                            <input formControlName="mobileNo" class="form-control" type="text" placeholder="Mobile No">
+                          </div>
+                          <div class="form-group">
+                            <label class="col-form-label">Grade</label>
+                            <select formControlName="grade" class="form-control">
+                                <option>A</option>
+                                <option>B</option>
+                                <option>C</option>
+                                <option>D</option>
+                                <option>F</option>
+                            </select>
+                        </div>
+                    </div>
+                  </div>
+                  <button (click)="addCounseller  ()" type="button" class="btn btn-light mr-2">Add More Counsellor</button>
+                  <button (click)="minusCounseller()" type="button"  class="btn btn-danger">Remove Counsellor</button>
+                  <hr class="mt-4 mb-4">
+                  <h6>Mumin Information</h6>
+                  <div formGroupName="muminDetails">
+                    <div class="form-group">
+                        <label class="col-form-label">Prefix</label>
+                        <select formControlName="prefix" class="form-control">
+                            <option></option>
+                            <option>Mulla</option>
+                            <option>Shaikh</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Name</label>
+                        <input formControlName="name" class="form-control" type="text" placeholder="Name">
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">ITS</label>
+                        <input formControlName="its" class="form-control" type="number" placeholder="ITS">
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Mauze</label>
+                        <input formControlName="mauze" class="form-control" type="text" placeholder="mauze">
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Mobile No</label>
+                        <input formControlName="mobileNo" class="form-control" type="text" placeholder="Mobile No">
+                      </div>
+                  </div>
+                  <hr class="mt-4 mb-4">
+                  <h6>Case Details</h6>
+                  <div formGroupName="caseDetails">
+                    <div class="form-group">
+                        <label class="col-form-label">Case Year</label>
+                        <input formControlName="caseYear" class="form-control" type="text" placeholder="Case Year">
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Case Type</label>
+                        <select formControlName="caseType" class="form-control">
+                            <option>Counselling</option>
+                            <option>Enayat</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Enayat Approval</label>
+                        <select formControlName="enayatApproval" class="form-control">
+                            <option value="true">Approved</option>
+                            <option value="false">Rejected</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Case Status</label>
+                        <input formControlName="caseStatus" class="form-control" type="text" placeholder="Case Status">
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Business Name</label>
+                        <input formControlName="businessName" class="form-control" type="text" placeholder="Business Name">
+                      </div>
+                      <div class="form-group">
+                        <label class="col-form-label">Key Note</label>
+                        <textarea  formControlName="keyNote" class="form-control" placeholder="Key Note" rows="5"></textarea>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <button class="btn btn-primary mr-1" type="submit">Submit</button>
+                    <button class="btn btn-secondary">Cancel</button>
+                  </div>
+                </form>
+              </div>
+              
+              {{this.muwasaatInsertForm.value | json}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 col-xl-6">
+        <div class="card">
+          <div class="card-header">
+            <h5>All Business Muwasaat Entries</h5>
+          </div>
+          <div class="card-body">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
