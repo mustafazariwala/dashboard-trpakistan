@@ -1,89 +1,160 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="">
-      <div class="col-sm-12 col-xl-12">
-        <!-- <div class="card card-absolute"> -->
-        <div class="card">
-            <!-- <div class="card-header bg-primary">
-                <h5 class="text-white">Search Business Muwasaat</h5>
-            </div> -->
-            <div class="card-body">
-               <form class="theme-form mega-form">
-                 <div class="form-row">
-                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label">
-                        TR REF
-                      </label>
-                      <ng-select [items]="data" bindLabel="trRef" placeholder="TR REF"></ng-select>
-                    </div>
-                   </div>
-                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label">
-                        Counsellor Name
-                      </label>
-                      <!-- <ng-select [items]="data" bindLabel="trRef" placeholder="Counsellor Name"></ng-select> -->
-                      <input class="form-control" type="text" placeholder="Counsellor Name">
-                    </div>
-                   </div>
-                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label class="col-form-label">
-                        Mumin Name
-                      </label>
-                      <ng-select [items]="data" bindLabel="muminDetails.name" placeholder="Mumin Name"></ng-select>
-                    </div>
-                   </div>
-                   <div class="col-md-3">
-                    <div class="form-group">
-                      <label class="col-form-label">
-                        Mumin ITS
-                      </label>
-                      <ng-select [items]="data" bindLabel="muminDetails.its" placeholder="Mumin ITS"></ng-select>
-                    </div>
-                   </div>
-                   <div class="col-md-3">
-                    <div class="form-group">
-                      <label class="col-form-label">
-                        Mumin Mauze
-                      </label>
-                      <input class="form-control" type="text" placeholder="Mumin Mauze">
-                    </div>
-                   </div>
-                   <div class="col-md-3">
-                    <div class="form-group">
-                      <label class="col-form-label">
-                        Case Year
-                      </label>
-                      <input class="form-control" type="text" placeholder="Case Year">
-                    </div>
-                   </div>
-                   <div class="col-md-3">
-                    <div class="form-group">
-                      <label class="col-form-label">
-                        Case Type
-                      </label>
-                      <input class="form-control" type="text" placeholder="Case Type">
-                    </div>
-                   </div>
-                   <div class="col-md-3">
-                    <div class="form-group">
-                      <label class="col-form-label">
-                        Enayat Approval
-                      </label>
-                      <input class="form-control" type="text" placeholder="Enayat Approval">
-                    </div>
-                   </div>
+    <div class="col-sm-12 col-xl-12">
+      <!-- <div class="card card-absolute"> -->
+      <div class="card">
+          <!-- <div class="card-header bg-primary">
+              <h5 class="text-white">Search Business Muwasaat</h5>
+          </div> -->
+          <div class="card-body">
+             <form class="theme-form mega-form" [formGroup]="muwasaatSearchForm"  (ngSubmit)="onSearch()">
+               <div class="form-row">
+                 <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label">
+                      TR REF
+                    </label>
+                    <ng-select formControlName="trRef" [items]="data" bindLabel="trRef"  bindValue="trRef" placeholder="TR REF"></ng-select>
+                  </div>
                  </div>
-                 <button class="btn btn-primary">Search</button>
-               </form>
-            </div>
-        </div>
-      </div>  
-    </div>
+                 <!-- <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label">
+                      Counsellor Name
+                    </label>
+                    <input class="form-control" type="text" placeholder="Counsellor Name">
+                  </div>
+                 </div> -->
+                 <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="col-form-label">
+                      Mumin Name
+                    </label>
+                    <ng-select formControlName="name" [items]="data" bindLabel="muminDetails.name" bindValue="muminDetails.name" placeholder="Mumin Name"></ng-select>
+                  </div>
+                 </div>
+                 <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="col-form-label">
+                      Mumin ITS
+                    </label>
+                    <ng-select formControlName="its" [items]="data" bindLabel="muminDetails.its" bindValue="muminDetails.its" placeholder="Mumin ITS"></ng-select>
+                  </div>
+                 </div>
+                 <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="col-form-label">
+                      Mumin Mauze
+                    </label>
+                    <ng-select formControlName="mauze" [items]="mohallah" placeholder="Mumin ITS"></ng-select>
+                  </div>
+                 </div>
+                 <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="col-form-label">
+                      Case Year
+                    </label>
+                    <select class="form-control" formControlName="caseYear">
+                      <option></option>
+                      <option>1439-40</option>
+                      <option>1440-41</option>
+                      <option>1441-42</option>
+                    </select>
+                  </div>
+                 </div>
+                 <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="col-form-label">
+                      Case Type
+                    </label>
+                    <select class="form-control" formControlName="caseType">
+                      <option></option>
+                      <option>Couselling</option>
+                      <option>Enayat</option>
+                    </select>
+                  </div>
+                 </div>
+                 <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="col-form-label">
+                      Enayat Approval
+                    </label>
+                    <select class="form-control" formControlName="enayatApproval">
+                      <option></option>
+                      <option>Approved</option>
+                      <option>Rejected</option>
+                    </select>
+                  </div>
+                 </div>
+               </div>
+               {{muwasaatSearchForm.value | json}}
+               <button class="btn btn-primary" type="submit">Search</button>
+             </form>
+          </div>
+      </div>
+    </div>  
   </div>
 </div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12 col-xl-12">
+      <div class="card card-absolute">
+      <div class="card">
+          <div class="card-header bg-primary">
+              <h5 class="text-white">{{searchData?.muminDetails.name}}</h5>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <p><strong>SN: </strong>{{searchData?.sn}}</p>
+              </div>
+              <div class="col-md-6">
+                <p><strong>TRREF: </strong>{{searchData?.trRef}}</p>
+              </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <h6>Counseller Details</h6>
+            <div class="row" *ngFor="let item of searchData?.counsellor">
+              <div class="col-md-6">
+                <p><strong>Name: </strong>{{item.prefix}} {{item.counsellorName}}</p>
+              </div>
+              <div class="col-md-3">
+                <p><strong>ITS:</strong>{{item.its}}</p>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Mobile No:</strong>{{item.mobileNo}}</p>
+              </div>
+            </div>
+            <hr class="mt-4 mb-4">
+            <h6>Case Details</h6>
+            <div class="row">
+              <div class="col-md-3">
+                <p><strong>Case Year:  </strong>{{searchData?.caseDetails.caseYear}}</p>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Case Type:  </strong>{{searchData?.caseDetails.caseType}}</p>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Case Year:  </strong>{{searchData?.caseDetails.enayatApproval}}</p>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Case Status</strong>{{searchData?.caseDetails.caseStatus}}</p>
+              </div>
+              <div class="col-md-3">
+                <p><strong>Business Name</strong>{{searchData?.caseDetails.businessName}}</p>
+              </div>
+              <div class="col-md-9">
+                <p><strong>Key Note</strong>{{searchData?.caseDetails.keyNote}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </div>
+</div>
+{{this.searchData | json}}
 
 <div class="container-fluid">
     <div class="row">

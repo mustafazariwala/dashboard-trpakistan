@@ -16,6 +16,9 @@ export class BusinessService {
     return this.http.get(this.businessMuwasaatURL + 'findRecord')
   }
 
+  Onsearch(data){
+    return this.http.post(this.businessMuwasaatURL + 'search', data)
+  }
   addRecord(data){
     return this.http.post(this.businessMuwasaatURL + 'addRecord', data)
   }

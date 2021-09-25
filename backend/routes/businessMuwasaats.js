@@ -55,6 +55,18 @@ router.get('/findRecord', (req,res) => {
     })
 })
 
+router.post('/search', (req,res)=> {
+    console.log(req.body)
+    BusinessMuwasaat.findOne(req.body)
+    .then(result => {
+        res.status(200).send(result)
+        
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
+
 
 
 router.post('/addRecord', (req,res)=> {

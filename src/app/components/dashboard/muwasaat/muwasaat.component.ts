@@ -10,8 +10,32 @@ import { BusinessService } from 'src/app/shared/services/business.service';
 })
 export class MuwasaatComponent implements OnInit {
   public data:any = [];
+  public mohallah = [
+        {label: "Ezzy Mohallah"},
+        {label: "Ibrahim Mohallah"},
+        {label: "Essa Mohallah"},
+        {label: "Taheri Mohallah"},
+        {label: "Mohammadi Mohallah"},
+        {label: "Saifee Mohallah"},
+        {label: "Rawalpindi"},
+        {label: "HyderabadSindh"},
+        {label: "Lahore"},
+        {label: "Hyderabad Badri"},
+        {label: "Jamali Mohallah"},
+        {label: "AMB"},
+        {label: "Qutbi Mohallah"},
+        {label: "Multan"},
+        {label: "Hyderabad"},
+        {label: "Al Mohallah Mohammadiyah"},
+        {label: "Burhani Bagh"},
+        {label: "Adam Mohallah"},
+        {label: "Saleh Mohallah"},
+        {label: "Fakhri Mohallah"},
+        {label: "Burhani Mohallah"},
+        {label: "Yusufi Mohallah"},
+  ]
   public selectgroupby: string;
-
+  searchData;
 
   constructor(
     private fb: FormBuilder,
@@ -20,6 +44,8 @@ export class MuwasaatComponent implements OnInit {
   ) { }
 
   muwasaatInsertForm: FormGroup
+  muwasaatSearchForm: FormGroup
+  
 
   ngOnInit(): void {
     this.businessService.findRecord().subscribe((response:any) => {
@@ -44,6 +70,15 @@ export class MuwasaatComponent implements OnInit {
         businessName: new FormControl(''),
         keyNote: new FormControl('')
       })
+    })
+    this.muwasaatSearchForm = new FormGroup({
+      trRef: new FormControl(null),
+      name: new FormControl(null),
+      its: new FormControl(null),
+      mauze: new FormControl(null),
+      caseYear: new FormControl(null),
+      caseType: new FormControl(null),
+      enayatApproval: new FormControl(null),
     })
     this.addCounseller()
 
@@ -78,5 +113,15 @@ export class MuwasaatComponent implements OnInit {
     const rubric = this.muwasaatInsertForm.controls.counsellor as FormArray;
     rubric.removeAt(rubric.length - 1)
   }
+
+  onSearch(){
+    let filtered = Object.entries(this.muwasaatSearchForm.value).reduce((a,[k,v]) => (v ? (a[k]=v, a) : a), {})
+    console.log(filtered)
+    this.businessService.Onsearch(filtered).subscribe(response => {
+      this.searchData = response;
+    })
+  }
+
+  
 
 }
