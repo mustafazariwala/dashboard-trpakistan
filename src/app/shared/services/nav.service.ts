@@ -89,6 +89,8 @@ export class NavService implements OnDestroy {
 			title: 'Dashboards', icon: 'home', type: 'sub', badgeType: 'success', badgeValue: '2', active: true, children: [
 				{ path: '/dashboard/default', title: 'Default', type: 'link' },
 				{ path: '/dashboard/ecommerce', title: 'Ecommerce', type: 'link' },
+				{ path: '/dashboard/counselling', title: 'Counselling', type: 'link' },
+				{ path: '/dashboard/resources', title: 'Resources', type: 'link' },
 				{ path: '/dashboard/businessmuwasaat', title: 'Business Muwasaat', type: 'link' }
 			]
 		},

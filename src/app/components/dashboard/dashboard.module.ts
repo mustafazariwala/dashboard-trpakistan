@@ -15,11 +15,12 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DefaultComponent } from './default/default.component';
 import { EcommerceComponent } from './ecommerce/ecommerce.component';
 import { MuwasaatComponent } from './muwasaat/muwasaat.component';
-import { CouncellingComponent } from './councelling/councelling.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { CounsellingComponent } from './counselling/counselling.component';
+import { ResourcesComponent } from './resources/resources.component';
 
 @NgModule({
-  declarations: [DefaultComponent, EcommerceComponent, MuwasaatComponent, CouncellingComponent],
+  declarations: [DefaultComponent, EcommerceComponent, MuwasaatComponent,  CounsellingComponent, ResourcesComponent],
   imports: [
     CommonModule,
     ChartistModule,
