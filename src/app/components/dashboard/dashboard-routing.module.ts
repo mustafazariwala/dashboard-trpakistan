@@ -5,6 +5,7 @@ import { DefaultComponent } from './default/default.component';
 import { EcommerceComponent } from './ecommerce/ecommerce.component';
 import { MuwasaatComponent } from './muwasaat/muwasaat.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { AdminComponent } from './admin/admin.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'resources',
         component: ResourcesComponent
+      },
+      {
+        path: 'admin',
+        component: AdminComponent
       }
     ],
   }

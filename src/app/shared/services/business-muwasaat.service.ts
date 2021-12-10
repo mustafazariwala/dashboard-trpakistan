@@ -14,4 +14,5 @@ export class BusinessMuwasaatService {
   addRecord(data){
     return this.http.post(this.businessMuwasaatURL + 'addRecord', data)
   }
+  
 }

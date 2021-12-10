@@ -1,7 +1,8 @@
 import { Routes } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
-export const content: Routes = [
+const contentShare: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('../../components/dashboard/dashboard.module').then(m => m.DashboardModule)
@@ -142,4 +143,11 @@ export const content: Routes = [
     path: 'ecommerce',
     loadChildren: () => import('../../components/apps/e-commerce/e-commerce.module').then(m => m.ECommerceModule)
   }
+  
 ];
+
+if(environment.production){
+  console.log('Production is on')
+  }
+
+export const content: Routes = contentShare

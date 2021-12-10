@@ -2,6 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subject, BehaviorSubject, fromEvent } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 // Menu
 export interface Menu {
@@ -22,10 +23,13 @@ export interface Menu {
 	providedIn: 'root'
 })
 
-export class NavService implements OnDestroy {
-
+export class NavService implements  OnDestroy {
+	
+	production = environment.production;
 	private unsubscriber: Subject<any> = new Subject();
 	public  screenWidth: BehaviorSubject<number> = new BehaviorSubject(window.innerWidth);
+
+
 
 	// Search Box
 	public search: boolean = false;
@@ -70,6 +74,14 @@ export class NavService implements OnDestroy {
 				this.levelMenu = false;
 			});
 		}
+		
+		if(environment.production){
+			for (let i = 0; i < this.MENUITEMS.length; i++) {
+				this.DASHBOARDMENUITEMS.push(this.MENUITEMS[i])
+				
+			}
+		}
+  
 	}
 
 	ngOnDestroy() {
@@ -80,19 +92,20 @@ export class NavService implements OnDestroy {
 	private setScreenWidth(width: number): void {
 		this.screenWidth.next(width);
 	}
-
+	DASHBOARDMENUITEMS : Menu[] = [ {
+		title: 'Dashboards', icon: 'home', type: 'sub', badgeType: 'success', active: true, children: [
+			// { path: '/dashboard/default', title: 'Default', type: 'link' },
+			// { path: '/dashboard/ecommerce', title: 'Ecommerce', type: 'link' },
+			{ path: '/dashboard/counselling', title: 'Counselling', type: 'link' },
+			{ path: '/dashboard/resources', title: 'Resources', type: 'link' },
+			{ path: '/dashboard/businessmuwasaat', title: 'Business Muwasaat', type: 'link' },
+			{ path: '/dashboard/admin', title: 'Admin', type: 'link' }
+		]
+	}];
+	
 	MENUITEMS: Menu[] = [
 		{
 			headTitle1: 'General', headTitle2: 'Dashboards & widgets.',
-		},
-		{
-			title: 'Dashboards', icon: 'home', type: 'sub', badgeType: 'success', badgeValue: '2', active: true, children: [
-				{ path: '/dashboard/default', title: 'Default', type: 'link' },
-				{ path: '/dashboard/ecommerce', title: 'Ecommerce', type: 'link' },
-				{ path: '/dashboard/counselling', title: 'Counselling', type: 'link' },
-				{ path: '/dashboard/resources', title: 'Resources', type: 'link' },
-				{ path: '/dashboard/businessmuwasaat', title: 'Business Muwasaat', type: 'link' }
-			]
 		},
 		{
 			title: 'Widgets', icon: 'airplay', type: 'sub', active: false, children: [
@@ -396,6 +409,7 @@ export class NavService implements OnDestroy {
 		{ path: '/support-ticket', title: 'Support Ticket', icon: 'users', type: 'link' }
 	];
 
+	
 	MEGAMENUITEMS: Menu[] = [
 		{
 			title: 'Error Pages', type: 'sub', active: true, children: [
@@ -462,8 +476,11 @@ export class NavService implements OnDestroy {
 	];
 
 	// Array
-	items = new BehaviorSubject<Menu[]>(this.MENUITEMS);
+	items = new BehaviorSubject<Menu[]>(this.DASHBOARDMENUITEMS);
 	megaItems = new BehaviorSubject<Menu[]>(this.MEGAMENUITEMS);
 	levelmenuitems = new BehaviorSubject<Menu[]>(this.LEVELMENUITEMS);
+
+
+
 
 }

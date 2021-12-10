@@ -18,9 +18,10 @@ import { MuwasaatComponent } from './muwasaat/muwasaat.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { CounsellingComponent } from './counselling/counselling.component';
 import { ResourcesComponent } from './resources/resources.component';
+import { AdminComponent } from './admin/admin.component';
 
-@NgModule({
-  declarations: [DefaultComponent, EcommerceComponent, MuwasaatComponent,  CounsellingComponent, ResourcesComponent],
+@NgModule({ 
+  declarations: [DefaultComponent, EcommerceComponent, MuwasaatComponent,  CounsellingComponent, ResourcesComponent,AdminComponent],
   imports: [
     CommonModule,
     ChartistModule,

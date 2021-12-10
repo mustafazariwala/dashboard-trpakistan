@@ -9,7 +9,7 @@ import { BusinessService } from 'src/app/shared/services/business.service';
   styleUrls: ['./muwasaat.component.scss']
 })
 export class MuwasaatComponent implements OnInit {
-  public data:any = [];
+  public data:any = null;
   public mohallah = [
         {label: "Ezzy Mohallah"},
         {label: "Ibrahim Mohallah"},
@@ -35,7 +35,7 @@ export class MuwasaatComponent implements OnInit {
         {label: "Yusufi Mohallah"},
   ]
   public selectgroupby: string;
-  searchData;
+  searchData = null;
 
   constructor(
     private fb: FormBuilder,

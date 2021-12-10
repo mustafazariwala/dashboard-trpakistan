@@ -35,6 +35,7 @@ import { ChatService } from './services/chat.service';
 import { LayoutService } from './services/layout.service';
 import { NavService } from './services/nav.service';
 import {BusinessService} from './services/business.service'
+import {ResourceService} from './services/resource.service'
 
 @NgModule({
   declarations: [
@@ -74,8 +75,8 @@ import {BusinessService} from './services/business.service'
     NavService,
     ChatService,
     LayoutService,
-    BusinessService
-    
+    BusinessService,
+    ResourceService    
   ],
   exports: [
     NgbModule,

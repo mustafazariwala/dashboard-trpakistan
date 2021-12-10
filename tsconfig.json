@@ -18,8 +18,9 @@
     }
 ],
 "angularCompilerOptions": {
-  "strictTemplates": true
-}
-// "experimentalDecorators": false
+  "strictTemplates": true,
+
+},
+"experimentalDecorators": false
 
 }

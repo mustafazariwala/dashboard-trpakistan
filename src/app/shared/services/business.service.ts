@@ -22,5 +22,12 @@ export class BusinessService {
   addRecord(data){
     return this.http.post(this.businessMuwasaatURL + 'addRecord', data)
   }
+  getTRRef(){
+    return this.http.get(this.businessMuwasaatURL + 'gettrref')
+  }
+  deleteTRRef(data){
+    let id = data.trRef._id
+    return this.http.get(this.businessMuwasaatURL + 'deletetrref' + '/' + id)
+  }
 
 }
